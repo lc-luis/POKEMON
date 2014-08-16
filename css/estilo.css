@@ -1,0 +1,16 @@
+* {margin: 0; padding: 0; list-style: none;}
+body {position: relative; font-family: 'Open Sans', sans-serif;}
+.contenedor 
+	{
+		margin: 0 auto; 
+		width: 960px;
+		background-color: black;
+	}
+
+.menu
+	{
+		background-color: red;
+	}
+
+.ocultar {display: none}
+
