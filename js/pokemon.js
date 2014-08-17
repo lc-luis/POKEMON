@@ -39,7 +39,7 @@ function cargarPokemon(pokemon)
 	$("#caja").addClass("animated fadeIn").removeClass("ocultar");
 	$("#imagen").html('<img src="' + pokemon.imagen + '"/>');
 	$("#nombre").html(pokemon.nombre);
-	$("#tipo").html(pokemon.tipo);
+	$("#tipo").html("Tipo <span>" + pokemon.tipo + "</span>");
 	$("#descripcion").html(pokemon.descripcion);
 	$("#altura").html("Altura <span>" + pokemon.altura + " m</span>");
 	$("#peso").html("Peso <span>" + pokemon.peso + " kg</span>");

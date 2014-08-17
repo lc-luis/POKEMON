@@ -156,6 +156,7 @@ h6
 {
 	vertical-align: top;
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #contenedorBichos ul li
@@ -175,5 +176,13 @@ h6
 }
 #contenedorBichos h3
 {
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 18px;
+	color: rgb(255, 206, 79);
+}
 
+.derecha
+{
+	display: inline-block;
 }
