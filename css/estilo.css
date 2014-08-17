@@ -21,6 +21,10 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 		display: inline-block;
 		width: 10%;
 	}
+.vs img
+	{
+		width: 70%;
+	}
 .resultado
 	{
 		width: 80%;

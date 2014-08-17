@@ -58,8 +58,22 @@
 			</div>
 
 		</div>
-		<div id="vs" class="vs ocultar">VS</div>
-		<div id="contenedorMaquina" class="contenedorMaquina ocultar">maq</div>
+		<div id="vs" class="vs ocultar"><img src="img/vs.png"></div>
+		<div id="contenedorMaquina" class="contenedorMaquina ocultar">
+			<img src="img/pke.png" id="imgBola" class="imgInicioBola" onclick="elegirContrincante()">
+			<div id="contenedorBichosPC" class="ocultar">
+				<h1><span id="nombrePC" class="sombra"></span></h1>
+				<div id="imagenPC"></div>
+				<h3 id="tipoPC"></h3>
+				
+				<ul class="izquierda">
+					<li id="vidaPC"></li>
+					<li id="ataquePC"></li>
+					<li id="defensaPC"></li>
+				</ul>
+				
+			</div>
+		</div>
 		<div id="resultado" class="resultado ocultar">res</div>
 	</div>
 

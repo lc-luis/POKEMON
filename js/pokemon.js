@@ -33,8 +33,12 @@ var Squirtle = new Pokemon("Squirtle", "Se protege con su caparazón y luego con
 
 var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "Dugtrio", "Gloom", "Golbat", "Kadabra", "Nidoking", "Ninetales", "Onix", "Pidgeotto", "Pikachu", "Primeape", "Squirtle"];
 
+var pokemonUsuario;
+var pokemonPC;
+
 function cargarPokemon(pokemon)
 {
+	pokemonUsuario = pokemon;
 	$("#contenedorBichos").removeClass("ocultar");
 	$("#caja").addClass("animated fadeIn").removeClass("ocultar");
 	$("#imagen").html('<img src="' + pokemon.imagen + '"/>');
@@ -60,6 +64,11 @@ function llenarLista()
 	$("#intro").addClass("ocultar");
 }
 
+function aleatorio(minimo, maximo) {
+	var numero = Math.floor( Math.random() * (maximo - minimo + 1) + minimo);
+	return numero;
+}
+
 function prepararCampo()
 {
 	$("#menu").addClass("ocultar");
@@ -72,4 +81,21 @@ function prepararCampo()
 	$("#contenedorMaquina").removeClass("ocultar");
 	$("#contenedorUsuario").removeClass("contenedorUsuario").addClass("contenedorUsuarioB");
 }
+function elegirContrincante()
+{
+	$("#imgBola").addClass("ocultar");
+	var nombrePC = aleatorio(0,15);
+	var pokemonPC = "Pikachu";
+	pokemonMaquina();
+	$("#contenedorBichosPC").removeClass("ocultar");
+	$("#imagenPC").html('<img src="' + pokemon.imagen + '"/>');
 
+}
+function pokemonMaquina()
+{
+	pokemon = pokemonPC;
+}
+function pokemonUser()
+{
+	pokemon = pokemonUsuario;
+}
