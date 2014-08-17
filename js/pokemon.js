@@ -60,3 +60,16 @@ function llenarLista()
 	$("#intro").addClass("ocultar");
 }
 
+function prepararCampo()
+{
+	$("#menu").addClass("ocultar");
+	$(".contenedor").addClass("fullAncho");
+	$("#caja").addClass("ocultar");
+	$("#listaA").addClass("ocultar");
+	$("#botonEmpezar").removeClass("botonStart").addClass("ocultar");
+	$("#vs").removeClass("ocultar");
+	$("#resultado").removeClass("ocultar");
+	$("#contenedorMaquina").removeClass("ocultar");
+	$("#contenedorUsuario").removeClass("contenedorUsuario").addClass("contenedorUsuarioB");
+}
+

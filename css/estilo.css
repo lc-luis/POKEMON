@@ -12,7 +12,31 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 		text-align: center;
 
 	}
-
+.fullAncho
+	{
+		width: 100%;
+	}
+.vs
+	{
+		display: inline-block;
+		width: 10%;
+	}
+.resultado
+	{
+		width: 80%;
+	}
+.contenedorUsuarioB
+	{
+		width: 40%;
+		text-align: left;
+		padding: 10px;
+		display: inline-block;
+	}
+.contenedorMaquina
+	{
+		width: 40%;
+		display: inline-block;
+	}	
 .caja{
 	width: 51%;
 	padding: 20px;
@@ -35,7 +59,6 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 #imgInicioBola
 	{
     	vertical-align: center;
-
 	}
 
 .imgInicioBola {

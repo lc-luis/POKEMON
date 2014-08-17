@@ -24,32 +24,43 @@
 	</div>
 
 	<div class="contenedor">
-
-		<span id="intro">
-			<h1 class="sombra">Haz click en la Bola para cargar los Pokemon</h1>
-			<img src="img/pke.png" id="imgInicioBola" class="imgInicioBola" onclick="llenarLista()">
-		</span>
-		<div id="contenedorBichos" class="ocultar">
-			<h1><span id="nombre" class="sombra"></span></h1>
-			<div id="imagen"></div>
-			<h3 id="tipo"></h3>
-			<div class="caja ocultar" id="caja">
-				<h2 id="descripcion"></h2>
+		<div id="contenedorUsuario" class="contenedorUsuario">
+			<!-- desaparece al pulsar la bola--> 
+			<span id="intro">
+				<h1 class="sombra">Haz click en la Bola para cargar los Pokemon</h1>
+				<img src="img/pke.png" id="imgInicioBola" class="imgInicioBola" onclick="llenarLista()">
+			</span>
+			<!-- fin --> 
+			<div id="contenedorBichos" class="ocultar">
+				<h1><span id="nombre" class="sombra"></span></h1>
+				<div id="imagen"></div>
+				<h3 id="tipo"></h3>
+				<!-- aparece al pulsar sobre la lista , y desaparece al iniciar batalla -->
+				<div class="caja ocultar" id="caja">
+					<h2 id="descripcion"></h2>
+				</div>
+				<!-- fin -->
+				<!-- desaparece al iniciar batalla -->
+				<ul id="listaA">
+					<li id="altura"></li>
+					<li id="peso"></li>
+					<li id="sexo"></li>
+					<li id="especie"></li>
+					<li id="habilidad"></li>
+				</ul>
+				<!-- fin -->
+				<ul class="izquierda">
+					<li id="vida"></li>
+					<li id="ataque"></li>
+					<li id="defensa"></li>
+				</ul>
+				<a href="#" id="botonEmpezar" class="botonStart" onclick="prepararCampo()">Empezar Batalla</a>
 			</div>
-			<ul>
-				<li id="altura"></li>
-				<li id="peso"></li>
-				<li id="sexo"></li>
-				<li id="especie"></li>
-				<li id="habilidad"></li>
-			</ul>
-			<ul class="izquierda">
-				<li id="vida"></li>
-				<li id="ataque"></li>
-				<li id="defensa"></li>
-			</ul>
-			<a href="#" class="botonStart">Empezar Batalla</a>
+
 		</div>
+		<div id="vs" class="vs ocultar">VS</div>
+		<div id="contenedorMaquina" class="contenedorMaquina ocultar">maq</div>
+		<div id="resultado" class="resultado ocultar">res</div>
 	</div>
 
 </body>
