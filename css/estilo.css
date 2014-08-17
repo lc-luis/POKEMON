@@ -18,7 +18,7 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 	padding: 20px;
 	display: inline-block;
 	vertical-align: top;
-	background: rgb(230, 70, 70);
+	background: rgba(220, 166, 44, 0.9);
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-o-border-radius: 5px;
@@ -35,7 +35,27 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 #imgInicioBola
 	{
     	vertical-align: center;
+
 	}
+
+.imgInicioBola {
+transition:All 1s ease;
+-webkit-transition:All 1s ease;
+-moz-transition:All 1s ease;
+-o-transition:All 1s ease;
+transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+-webkit-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+-moz-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+-o-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+-ms-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+}
+.imgInicioBola:hover{
+transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+-webkit-transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+-moz-transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+-o-transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+-ms-transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+}
 
 .menu 
 	{
@@ -85,4 +105,75 @@ h6
 		text-align: center;
 	}
 
+.sombra 
+	{
+		text-shadow: 3px 3px 3px #aaa;
+		color: white;
+	}
 
+.botonStart {
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+	background:-moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:-ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0',GradientType=0);
+	background-color:#3d94f6;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:13px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+.botonStart:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+	background:-moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:-ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
+	background-color:#1e62d0;
+}
+.botonStart:active {
+	position:relative;
+	top:1px;
+}
+
+#contenedorBichos ul
+{
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+#contenedorBichos ul li
+{
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 18px;
+	color: rgb(255, 206, 79);
+}
+
+#contenedorBichos ul li span
+{
+	color: rgb(8, 8, 100);
+	font-size: 20px;
+	text-transform: lowercase;
+	font-weight: 400;
+}
+#contenedorBichos h3
+{
+
+}

@@ -1,8 +1,8 @@
 //funcion que se carga al inicio para llenar la lista con los pokemon
-function Pokemon (nombre, info, sexo, peso, altura, especie, habilidad, vida, ataque, defensa, imagen, tipo) {
+function Pokemon (nombre, descripcion, sexo, peso, altura, especie, habilidad, vida, ataque, defensa, imagen, tipo) {
 	this.nombre = nombre,
 	this.tipo = tipo,
-	this.info = info,
+	this.descripcion = descripcion,
 	this.sexo = sexo,
 	this.peso = peso,
 	this.altura = altura,
@@ -35,10 +35,20 @@ var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "
 
 function cargarPokemon(pokemon)
 {
-	$("#caja").removeClass("ocultar");
+	$("#contenedorBichos").removeClass("ocultar");
+	$("#caja").addClass("animated fadeIn").removeClass("ocultar");
 	$("#imagen").html('<img src="' + pokemon.imagen + '"/>');
 	$("#nombre").html(pokemon.nombre);
 	$("#tipo").html(pokemon.tipo);
+	$("#descripcion").html(pokemon.descripcion);
+	$("#altura").html("Altura <span>" + pokemon.altura + " m</span>");
+	$("#peso").html("Peso <span>" + pokemon.peso + " kg</span>");
+	$("#sexo").html("Sexo <span>" + pokemon.sexo + "</span>");
+	$("#especie").html("Especie <span>" + pokemon.especie + "</span>");
+	$("#habilidad").html("Habilidad <span>" + pokemon.habilidad + "</span>");
+	$("#vida").html("Vida<br/> <span>" + pokemon.vida + "</span>");
+	$("#ataque").html("Ataque<br/> <span>" + pokemon.ataque + "</span>");
+	$("#defensa").html("Defensa<br/> <span>" + pokemon.defensa + "</span>");
 }
 
 function llenarLista()
