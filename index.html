@@ -7,15 +7,39 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" scr="js/pokemon.js"></script>
+	
+	
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/pokemon.js"></script>
 
 </head>
 
 <body>
+	<div class="menu" id="menu">
+		<a href="javascript:location.reload()"><img src="img/pokemon.png" id="logoPokemon"></a>
+		<h6>click arriba para reiniciar!</h6>
+		
+		<ul id="lista">
+		
+		</ul>
+		
+	</div>
 
-	<nav class="menu"></nav>
-	
-	<div class="contenedor"></div>
+	<div class="contenedor">
+
+		<span id="intro">
+			<h1>Haz click en la Bola para cargar los Pokemon</h1>
+			<img src="img/pke.png" id="imgInicioBola" onclick="llenarLista()">
+		</span>
+		<h1><span id="nombre"></span></h1>
+		<div id="imagen"></div>
+		<div id="tipo"></div>
+		<div class="caja ocultar" id="caja">
+			<div id="barraVida"></div>
+			<span id="ataque"></span>
+			<span id="defensa"></span>
+		</div>
+	</div>
 
 </body>
 

@@ -2,15 +2,87 @@
 body {position: relative; font-family: 'Open Sans', sans-serif;}
 .contenedor 
 	{
-		margin: 0 auto; 
-		width: 960px;
-		background-color: black;
+		right: 0;
+		top: 0;
+		width: 80%;
+		border-left: 5px solid rgb(145, 0, 0);
+		height: 100%;
+		background: rgb(185, 20, 20);
+		position: fixed;
+		text-align: center;
+
 	}
 
-.menu
+.caja{
+	width: 51%;
+	padding: 20px;
+	display: inline-block;
+	vertical-align: top;
+	background: rgb(230, 70, 70);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	box-shadow: inset 0px 0px 5px rgb(9, 9, 9);
+	-moz-box-shadow: inset 0px 0px 5px rgb(9, 9, 9);
+	-o-box-shadow: inset 0px 0px 5px rgb(9, 9, 9);
+	-webkit-box-shadow: inset 0px 0px 5px rgb(9, 9, 9);
+	-ms-box-shadow: inset 0px 0px 5px rgb(9, 9, 9);
+}
+
+
+#imgInicioBola
 	{
-		background-color: red;
+    	vertical-align: center;
+	}
+
+.menu 
+	{
+		background: black;
+	}
+
+.menu ul
+	{
+		overflow: scroll;
+	}
+
+.menu ul li
+	{
+		text-align: justify;
+		text-decoration: none;
+		list-style: none;
+		color: #fff;
+		cursor: pointer;
+		font-size: 30px;
+		width: 20%;
+		height: 80%;
+		padding: 10px;
+		backgrund: transparent;
+		transition: background 0.5s;
+		box-sizing:border-box; 
+		-moz-box-sizing:border-box; /* Firefox */ 
+		-webkit-box-sizing:border-box; /* Safari */
+	}
+
+.menu ul li:hover
+	{
+		background: #575757;
+	}
+
+.menu img
+	{
+		width: 20%;
+		border-bottom: 5px solid rgb(145, 0, 0);
 	}
 
 .ocultar {display: none}
+
+h6 
+	{
+		color: white;
+		width: 20%;
+		text-align: center;
+	}
+
 
