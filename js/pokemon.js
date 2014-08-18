@@ -99,41 +99,58 @@ function elegirContrincante()
 
 function ataqueUsuario()
 {
-	vidaMaquina = pokemonPC.vida - (pokemonUsuario.ataque - (pokemonPC.defensa / 2));
-	if (vidaMaquina < 0 || vidaMaquina == 0)
+	fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
+	$("#resultado").append("<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + "</p>");
+	fuerzaDefensaMaquina = aleatorio((pokemonPC.defensa / 2), pokemonPC.defensa);
+	golpe = fuerzaAtaqueUsuario - fuerzaDefensaMaquina;
+	if (golpe > 0)
+	{
+		$("#resultado").append("<p>" + pokemonPC.nombre + " se defiende con " + fuerzaDefensaMaquina + ". y pierde " + golpe + " de vida.</p>");
+		pokemonPC.vida = pokemonPC.vida - golpe;
+	}
+	else
+	{
+		$("#resultado").append("<p>" + pokemonPC.nombre + " se defiende con " + fuerzaDefensaMaquina + ". y rechaza el golpe.</p>");
+	}
+	
+	if (pokemonPC.vida < 0 || pokemonPC.vida == 0)
 		{
-			vidaMaquina = 0;
-			pokemonPC.vida = vidaMaquina;
+			pokemonPC.vida = 0;
 			$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 			$("#resultado").append("<p>El ganador es: " + pokemonUsuario.nombre + "</p>");
 			return true;
 		}
-	pokemonPC.vida = vidaMaquina;
 	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
-	$("#resultado").append("<p>" + pokemonUsuario.nombre + " Ataca</p>");
-	$("#resultado").append("<p>" + pokemonPC.nombre + " pierde " + vidaMaquina + " de vida.</p>");
+	$("#resultado").append("<p>" + pokemonPC.nombre + " se queda con " + pokemonPC.vida + " de vida.</p>");
 	ataqueMaquina();
 		
 }
 
 function ataqueMaquina()
 {
-	vidaUsuario = pokemonUsuario.vida - (pokemonPC.ataque - (pokemonUsuario.defensa / 2));
-	if (vidaUsuario < 0 || vidaUsuario == 0)
+	fuerzaAtaqueMaquina = aleatorio((pokemonPC.ataque / 2), pokemonPC.ataque);
+	$("#resultado").append("<p>" + pokemonPC.nombre + " Ataca con una fuerza de " + fuerzaAtaqueMaquina + "</p>");
+	fuerzaDefensaUsuario = aleatorio((pokemonUsuario.defensa / 2), pokemonUsuario.defensa);
+	golpe = fuerzaAtaqueMaquina - fuerzaDefensaUsuario;
+	if (golpe > 0)
+	{
+		$("#resultado").append("<p>" + pokemonUsuario.nombre + " se defiende con " + fuerzaDefensaUsuario + ". y pierde " + golpe + " de vida.</p>");
+		pokemonUsuario.vida = pokemonUsuario.vida - golpe;
+	}
+	else
+	{
+		$("#resultado").append("<p>" + pokemonUsuario.nombre + " se defiende con " + fuerzaDefensaUsuario + ". y rechaza el golpe.</p>");
+	}
+	if (pokemonUsuario.vida < 0 || pokemonUsuario.vida == 0)
 		{
-			vidaUsuario = 0;
-			pokemonUsuario.vida = vidaUsuario;
+			pokemonUsuario.vida = 0;
 			$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
 			$("#resultado").append("<p>El ganador es: " + pokemonPC.nombre + "</p>");
 			return true;
-		} 
-	pokemonUsuario.vida = vidaUsuario;
+		}
 	$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
-	$("#resultado").append("<p>" + pokemonPC.nombre + " Ataca</p>");
-	$("#resultado").append("<p>" + pokemonUsuario.nombre + " pierde " + vidaUsuario + " de vida.</p>");
+	$("#resultado").append("<p>" + pokemonUsuario.nombre + " se queda con " + pokemonUsuario.vida + " de vida.</p>");
 	ataqueUsuario();
-		
-
 }
 
 function luchar()
