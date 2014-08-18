@@ -20,6 +20,8 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 	{
 		display: inline-block;
 		width: 10%;
+		padding-top: 20%;
+		vertical-align: top;
 	}
 .vs img
 	{
@@ -27,7 +29,11 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 	}
 .resultado
 	{
-		width: 80%;
+		width: 100%;
+		text-align: center;
+		text-transform: uppercase;
+		color: white;
+		text-shadow: 3px 3px 3px #aaa;
 	}
 .contenedorUsuarioB
 	{
@@ -40,6 +46,8 @@ body {position: relative; font-family: 'Open Sans', sans-serif;}
 	{
 		width: 40%;
 		display: inline-block;
+		text-align: right;
+		padding: 10px;
 	}	
 .caja{
 	width: 51%;
@@ -209,7 +217,50 @@ h6
 	color: rgb(255, 206, 79);
 }
 
+#contenedorBichosPC  ul
+{
+	vertical-align: top;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#contenedorBichosPC ul li
+{
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 18px;
+	color: rgb(255, 206, 79);
+}
+
+#contenedorBichosPC ul li span
+{
+	color: rgb(8, 8, 100);
+	font-size: 20px;
+	text-transform: lowercase;
+	font-weight: 400;
+}
+#contenedorBichosPC h3
+{
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 18px;
+	color: rgb(255, 206, 79);
+}
+
 .derecha
 {
 	display: inline-block;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  
+  width: 250px;
+  height: 15px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }

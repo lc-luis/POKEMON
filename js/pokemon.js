@@ -31,8 +31,8 @@ var Pikachu = new Pokemon("Pikachu", "Levanta su cola para vigilar los alrededor
 var Primeape = new Pokemon("Primeape", "Solo se calma cuando nadie está cerca. Llegar a ver ese momento es realmente difícil.", "Ambos", 32.0, 1, "Mono Cerdo", "Espritu´Vital / Irascible", 40, 80, 40, "img/primeape.png", "lucha");
 var Squirtle = new Pokemon("Squirtle", "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.", "Ambos", 9.0, 0.5, "Tortuguita", "Torrente", 20, 30,30, "img/squirtle.png", "agua");
 
+var listaPokemonB = [Arbok, Arcanine, Beedrill, Bulbasaur, Charizard, Dugtrio, Gloom, Golbat, Kadabra, Nidoking, Ninetales, Onix, Pidgeotto, Pikachu, Primeape, Squirtle];
 var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "Dugtrio", "Gloom", "Golbat", "Kadabra", "Nidoking", "Ninetales", "Onix", "Pidgeotto", "Pikachu", "Primeape", "Squirtle"];
-
 var pokemonUsuario;
 var pokemonPC;
 
@@ -50,10 +50,9 @@ function cargarPokemon(pokemon)
 	$("#sexo").html("Sexo <span>" + pokemon.sexo + "</span>");
 	$("#especie").html("Especie <span>" + pokemon.especie + "</span>");
 	$("#habilidad").html("Habilidad <span>" + pokemon.habilidad + "</span>");
-	$("#vida").html("Vida<br/> <span>" + pokemon.vida + "</span>");
-	$("#ataque").html("Ataque<br/> <span>" + pokemon.ataque + "</span>");
-	$("#defensa").html("Defensa<br/> <span>" + pokemon.defensa + "</span>");
-}
+	$("#ataque").html('Ataque: <span>' + pokemon.ataque + '</span><br/><progress value="' + pokemon.ataque + '" max="100"></progress>');
+	$("#defensa").html('Defensa: <span>' + pokemon.defensa + '</span><br/><progress value="' + pokemon.defensa + '" max="100"></progress>');
+	$("#vida").html('Vida: <span>' + pokemon.vida + '</span><br/><progress value="' + pokemon.vida + '" max="100"></progress>');}
 
 function llenarLista()
 {	
@@ -84,18 +83,30 @@ function prepararCampo()
 function elegirContrincante()
 {
 	$("#imgBola").addClass("ocultar");
-	var nombrePC = aleatorio(0,15);
-	var pokemonPC = "Pikachu";
-	pokemonMaquina();
+	$("#botonPelear").addClass("botonStart").removeClass("ocultar");
+	var numero = aleatorio(0,15);
+	pokemonPC = listaPokemonB[numero];
+	//var pokemonPC = Pikachu;
 	$("#contenedorBichosPC").removeClass("ocultar");
-	$("#imagenPC").html('<img src="' + pokemon.imagen + '"/>');
+	$("#imagenPC").html('<img src="' + pokemonPC.imagen + '"/>');
+	$("#nombrePC").html(pokemonPC.nombre);
+	$("#tipoPC").html("Tipo <span>" + pokemonPC.tipo + "</span>");
+	$("#ataquePC").html('Ataque: <span>' + pokemonPC.ataque + '</span><br/><progress value="' + pokemonPC.ataque + '" max="100"></progress>');
+	$("#defensaPC").html('Defensa: <span>' + pokemonPC.defensa + '</span><br/><progress value="' + pokemonPC.defensa + '" max="100"></progress>');
+	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 
 }
-function pokemonMaquina()
+
+function ataqueUsuario()
 {
-	pokemon = pokemonPC;
+	vidaMaquina = pokemonPC.vida - (pokemonUsuario.ataque - (pokemonPC.defensa / 2));
+	pokemonPC.vida = vidaMaquina;
+	alert(vidaMaquina);
 }
-function pokemonUser()
+function luchar()
 {
-	pokemon = pokemonUsuario;
+	$("#botonPelear").removeClass("botonStart").addClass("ocultar");
+	$("#resultado").removeClass("ocultar");
+	$("#resultado").html("<p>Comienza atacando " + pokemonUsuario.nombre + "</p>");
+	ataqueUsuario();
 }
