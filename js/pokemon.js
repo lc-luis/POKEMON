@@ -121,7 +121,7 @@ function ataqueUsuario()
 			pokemonPC.vida = 0;
 			$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 			texto = "<p>El ganador es: " + pokemonUsuario.nombre + "</p>";
-			alerta(texto, "warning");
+			alerta(texto, "success");
 			return true;
 		}
 	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
@@ -155,7 +155,7 @@ function ataqueMaquina()
 			$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
 			texto = "<p>El ganador es: " + pokemonPC.nombre + "</p>";
 			alerta(texto, "success");
-			return true;
+			return false;
 		}
 	$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
 	texto = "<p>" + pokemonUsuario.nombre + " se queda con " + pokemonUsuario.vida + " de vida.</p>";
@@ -169,7 +169,17 @@ function luchar()
 	$("#resultado").removeClass("ocultar");
 	texto = "<p>Comienza atacando " + pokemonUsuario.nombre + "</p>";
 	alerta(texto, "success");
-	window.setTimeout(ataqueUsuario, 5000);
+	if(window.setTimeout(ataqueUsuario, 5000))
+	{
+		texto = "<p>Gana el usuario con: " + pokemonUsuario.nombre + "</p>";
+		alertaB(texto, success);
+	}
+	else
+	{
+		texto = "<p>Gana la maquina con: " + pokemonPC.nombre + "</p>";
+		alertaB(texto, success);
+	}
+
 	
 }
 
@@ -183,6 +193,21 @@ function alerta(texto, tipo)
             modal       : true,
             maxVisible  : 3,
             timeout     : 2000,
+            layout      : 'center',
+            theme       : 'defaultTheme'
+        });
+
+        console.log('html: ' + n.options.id);
+    }
+
+function alertaB(texto, tipo) 
+	{
+
+        var n = noty({
+            text        : texto,
+            type        : tipo,
+            dismissQueue: true,
+            modal       : false,
             layout      : 'center',
             theme       : 'defaultTheme'
         });
