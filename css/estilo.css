@@ -264,3 +264,21 @@ progress[value]::-webkit-progress-bar {
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
+
+.animado {
+-webkit-animation: cssAnimation 0.6038s 4 ease-in-out;
+-moz-animation: cssAnimation 0.6038s 4 ease-in-out;
+-o-animation: cssAnimation 0.6038s 4 ease-in-out;
+}
+@-webkit-keyframes cssAnimation {
+from { -webkit-transform: rotate(0deg) scale(0.5) skew(0deg) translate(20px); }
+to { -webkit-transform: rotate(0deg) scale(1.5) skew(0deg) translate(20px); }
+}1.5
+@-moz-keyframes cssAnimation {
+from { -moz-transform: rotate(0deg) scale(0.5) skew(0deg) translate(20px); }
+to { -moz-transform: rotate(0deg) scale(1.5) skew(0deg) translate(20px); }
+}
+@-o-keyframes cssAnimation {
+from { -o-transform: rotate(0deg) scale(0.5) skew(0deg) translate(20px); }
+to { -o-transform: rotate(0deg) scale(1.5) skew(0deg) translate(20px); }
+}

@@ -99,6 +99,7 @@ function elegirContrincante()
 
 function ataqueUsuario()
 {
+	$("#imagen").addClass("animado");
 	fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
 	texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + "</p>";
 	alerta(texto, "warning");
@@ -122,17 +123,21 @@ function ataqueUsuario()
 			$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 			texto = "<p>El ganador es: " + pokemonUsuario.nombre + "</p>";
 			alerta(texto, "success");
+			texto = "<p>Gana el usuario con: " + pokemonUsuario.nombre + "</p><br>Pulsa en OK para reiniciar.";
+			alertaB(texto, "success");
 			return true;
 		}
 	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 	texto = "<p>" + pokemonPC.nombre + " se queda con " + pokemonPC.vida + " de vida.</p>";
 	alerta(texto, "warning");
+	$("#imagen").removeClass("animado");
 	window.setTimeout(ataqueMaquina, 5000);
 		
 }
 
 function ataqueMaquina()
 {
+	$("#imagenPC").addClass("animado");
 	fuerzaAtaqueMaquina = aleatorio((pokemonPC.ataque / 2), pokemonPC.ataque);
 	texto = "<p>" + pokemonPC.nombre + " Ataca con una fuerza de " + fuerzaAtaqueMaquina + "</p>";
 	alerta(texto, "warning");
@@ -155,11 +160,14 @@ function ataqueMaquina()
 			$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
 			texto = "<p>El ganador es: " + pokemonPC.nombre + "</p>";
 			alerta(texto, "success");
-			return false;
+			texto = "<p>Gana la maquina con: " + pokemonPC.nombre + "</p><br>Pulsa en OK para reiniciar.";
+			alertaB(texto, "success");
+			return true;
 		}
 	$("#vida").html('Vida: <span>' + pokemonUsuario.vida + '</span><br/><progress value="' + pokemonUsuario.vida + '" max="100"></progress>');
 	texto = "<p>" + pokemonUsuario.nombre + " se queda con " + pokemonUsuario.vida + " de vida.</p>";
 	alerta(texto, "success");
+	$("#imagenPC").removeClass("animado");
 	window.setTimeout(ataqueUsuario, 5000);
 }
 
@@ -169,16 +177,8 @@ function luchar()
 	$("#resultado").removeClass("ocultar");
 	texto = "<p>Comienza atacando " + pokemonUsuario.nombre + "</p>";
 	alerta(texto, "success");
-	if(window.setTimeout(ataqueUsuario, 5000))
-	{
-		texto = "<p>Gana el usuario con: " + pokemonUsuario.nombre + "</p>";
-		alertaB(texto, success);
-	}
-	else
-	{
-		texto = "<p>Gana la maquina con: " + pokemonPC.nombre + "</p>";
-		alertaB(texto, success);
-	}
+	window.setTimeout(ataqueUsuario, 5000);
+	
 
 	
 }
@@ -207,9 +207,12 @@ function alertaB(texto, tipo)
             text        : texto,
             type        : tipo,
             dismissQueue: true,
-            modal       : false,
             layout      : 'center',
-            theme       : 'defaultTheme'
+            theme       : 'defaultTheme',
+            buttons		: [{addClass: 'btn btn-primary', text: 'OK', onClick: function($noty){
+            	$noty.close();
+            	location.reload();
+            }} ]
         });
 
         console.log('html: ' + n.options.id);
