@@ -254,7 +254,7 @@ function alerta(texto, tipo)
             dismissQueue: true,
             modal       : true,
             maxVisible  : 3,
-            timeout     : 2000,
+            timeout     : 3000,
             layout      : 'center',
             theme       : 'defaultTheme'
         });
