@@ -30,9 +30,11 @@ var Pidgeotto = new Pokemon("Pidgeotto", "Tiene unas garras desarrolladas. Puede
 var Pikachu = new Pokemon("Pikachu", "Levanta su cola para vigilar los alrededores. A veces, puede ser alcanzado por un rayo en esa pose.", "Ambos", 6.0, 0.4, "Ratón", "Eletricidad Estática", 100, 30, 20, "img/pikachu.png", "electrico");
 var Primeape = new Pokemon("Primeape", "Solo se calma cuando nadie está cerca. Llegar a ver ese momento es realmente difícil.", "Ambos", 32.0, 1, "Mono Cerdo", "Espritu´Vital / Irascible", 100, 80, 40, "img/primeape.png", "lucha");
 var Squirtle = new Pokemon("Squirtle", "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.", "Ambos", 9.0, 0.5, "Tortuguita", "Torrente", 100, 30,30, "img/squirtle.png", "agua");
+var Pablo = new Pokemon("Pablo", "Le gusta la leche y los yogures, ojo con él, es un diablillo.", "Macho", 11.0, 83.0, "Humanito", "Estufita", 100, 60,40, "img/pablo.png", "fuego");
 
-var listaPokemonB = [Arbok, Arcanine, Beedrill, Bulbasaur, Charizard, Dugtrio, Gloom, Golbat, Kadabra, Nidoking, Ninetales, Onix, Pidgeotto, Pikachu, Primeape, Squirtle];
-var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "Dugtrio", "Gloom", "Golbat", "Kadabra", "Nidoking", "Ninetales", "Onix", "Pidgeotto", "Pikachu", "Primeape", "Squirtle"];
+
+var listaPokemonB = [Arbok, Arcanine, Beedrill, Bulbasaur, Charizard, Dugtrio, Gloom, Golbat, Kadabra, Nidoking, Ninetales, Onix, Pidgeotto, Pikachu, Primeape, Squirtle, Pablo];
+var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "Dugtrio", "Gloom", "Golbat", "Kadabra", "Nidoking", "Ninetales", "Onix", "Pidgeotto", "Pikachu", "Primeape", "Squirtle", "Pablo"];
 var pokemonUsuario;
 var pokemonPC;
 var ganador;
@@ -88,7 +90,7 @@ function elegirContrincante()
 {
 	$("#imgBola").addClass("ocultar");
 	$("#botonPelear").addClass("botonStart").removeClass("ocultar");
-	var numero = aleatorio(0,15);
+	var numero = aleatorio(0,16);
 	pokemonPC = listaPokemonB[numero];
 	//var pokemonPC = Pikachu;
 	$("#contenedorBichosPC").removeClass("ocultar");
