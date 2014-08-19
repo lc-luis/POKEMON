@@ -36,6 +36,10 @@ var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "
 var pokemonUsuario;
 var pokemonPC;
 var ganador;
+var cantidadAtaqueMaquina = 0;
+var cantidadAtaqueUsuario = 0;
+var bonus = 10;
+var listaBonus = ["x 0", "x 1", "x 2", "x 3"];
 function cargarPokemon(pokemon)
 {
 	pokemonUsuario = pokemon;
@@ -100,11 +104,29 @@ function elegirContrincante()
 function ataqueUsuario()
 {
 	$("#imagen").addClass("animado");
-	fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
-	texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + "</p>";
-	alerta(texto, "warning");
-	fuerzaDefensaMaquina = aleatorio((pokemonPC.defensa / 2), pokemonPC.defensa);
-	golpe = fuerzaAtaqueUsuario - fuerzaDefensaMaquina;
+	if(cantidadAtaqueUsuario > aleatorio(0,5))
+	{
+		numero = aleatorio(0,3);
+		bonus = listaBonus[numero];
+	}
+	if(bonus == 10)
+	{
+		fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
+		texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + "</p>";
+		alerta(texto, "warning");
+		fuerzaDefensaMaquina = aleatorio((pokemonPC.defensa / 2), pokemonPC.defensa);
+		golpe = fuerzaAtaqueUsuario - fuerzaDefensaMaquina;
+	}
+	else
+	{
+		fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
+		fuerzaAtaqueUsuario = fuerzaAtaqueUsuario * numero;
+		texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + " con un BONUS de -> X " + numero + " <- .</p>";
+		alerta(texto, "error");
+		fuerzaDefensaMaquina = aleatorio((pokemonPC.defensa / 2), pokemonPC.defensa);
+		golpe = fuerzaAtaqueUsuario - fuerzaDefensaMaquina;
+	}
+	
 	if (golpe > 0)
 	{
 		texto = "<p>" + pokemonPC.nombre + " se defiende con " + fuerzaDefensaMaquina + ". y pierde " + golpe + " de vida.</p>";
@@ -131,6 +153,8 @@ function ataqueUsuario()
 	texto = "<p>" + pokemonPC.nombre + " se queda con " + pokemonPC.vida + " de vida.</p>";
 	alerta(texto, "warning");
 	$("#imagen").removeClass("animado");
+	cantidadAtaqueUsuario = cantidadAtaqueUsuario + 1;
+	bonus = "10";
 	window.setTimeout(ataqueMaquina, 5000);
 		
 }
@@ -168,6 +192,7 @@ function ataqueMaquina()
 	texto = "<p>" + pokemonUsuario.nombre + " se queda con " + pokemonUsuario.vida + " de vida.</p>";
 	alerta(texto, "success");
 	$("#imagenPC").removeClass("animado");
+	cantidadAtaqueMaquina = cantidadAtaqueMaquina + 1;
 	window.setTimeout(ataqueUsuario, 5000);
 }
 
