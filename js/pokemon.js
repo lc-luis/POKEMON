@@ -1,4 +1,4 @@
-//funcion que se carga al inicio para llenar la lista con los pokemon
+//POO Pokemon
 function Pokemon (nombre, descripcion, sexo, peso, altura, especie, habilidad, vida, ataque, defensa, imagen, tipo) {
 	this.nombre = nombre,
 	this.tipo = tipo,
