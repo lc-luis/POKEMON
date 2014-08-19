@@ -162,11 +162,28 @@ function ataqueUsuario()
 function ataqueMaquina()
 {
 	$("#imagenPC").addClass("animado");
-	fuerzaAtaqueMaquina = aleatorio((pokemonPC.ataque / 2), pokemonPC.ataque);
-	texto = "<p>" + pokemonPC.nombre + " Ataca con una fuerza de " + fuerzaAtaqueMaquina + "</p>";
-	alerta(texto, "warning");
-	fuerzaDefensaUsuario = aleatorio((pokemonUsuario.defensa / 2), pokemonUsuario.defensa);
-	golpe = fuerzaAtaqueMaquina - fuerzaDefensaUsuario;
+	if(cantidadAtaqueMaquina > aleatorio(0,5))
+	{
+		numero = aleatorio(0,3);
+		bonus = listaBonus[numero];
+	}
+	if(bonus == 10)
+	{
+		fuerzaAtaqueMaquina = aleatorio((pokemonPC.ataque / 2), pokemonPC.ataque);
+		texto = "<p>" + pokemonPC.nombre + " Ataca con una fuerza de " + fuerzaAtaqueMaquina + "</p>";
+		alerta(texto, "warning");
+		fuerzaDefensaUsuario = aleatorio((pokemonUsuario.defensa / 2), pokemonUsuario.defensa);
+		golpe = fuerzaAtaqueMaquina - fuerzaDefensaUsuario;
+	}
+	else
+	{
+		fuerzaAtaqueMaquina = aleatorio((pokemonPC.ataque / 2), pokemonPC.ataque);
+		fuerzaAtaqueMaquina = fuerzaAtaqueMaquina * numero;
+		texto = "<p>" + pokemonPC.nombre + " Ataca con una fuerza de " + fuerzaAtaqueMaquina + " con un BONUS de -> X " + numero + " <- .</p>";
+		alerta(texto, "error");
+		fuerzaDefensaUsuario = aleatorio((pokemonUsuario.defensa / 2), pokemonUsuario.defensa);
+		golpe = fuerzaAtaqueMaquina - fuerzaDefensaUsuario;
+	}
 	if (golpe > 0)
 	{
 		texto = "<p>" + pokemonUsuario.nombre + " se defiende con " + fuerzaDefensaUsuario + ". y pierde " + golpe + " de vida.</p>";
@@ -193,6 +210,7 @@ function ataqueMaquina()
 	alerta(texto, "success");
 	$("#imagenPC").removeClass("animado");
 	cantidadAtaqueMaquina = cantidadAtaqueMaquina + 1;
+	bonus = "10";
 	window.setTimeout(ataqueUsuario, 5000);
 }
 
