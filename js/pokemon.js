@@ -13,7 +13,7 @@ function Pokemon (nombre, descripcion, sexo, peso, altura, especie, habilidad, v
 	this.defensa = defensa,
 	this.imagen = imagen
 };
-
+//Lista de Pokemons
 var Arbok = new Pokemon("Arbok", "El dibujo que tiene en la panza aterroriza. Los rivales más débiles salen huyendo al verlo.", "Ambos", 65.0, 3.5, "Cobra", "Mudar / Intimidación", 100, 40, 30, "img/arbok.png", "veneno");
 var Arcanine = new Pokemon("Arcanine", "Un Pokémon muy admirado desde la antigüedad por su belleza. Corre ágilmente como si tuviera alas.", "Ambos", 155.0, 1.9, "Legendario", "Intimidación / Absorbe Fuego", 100, 100, 60, "img/arcanine.png", "fuego");
 var Beedrill = new Pokemon("Beedrill", "Tiene 3 aguijones venenosos en sus patas y cola. Suelen pinchar a sus enemigos repetidas veces.", "Ambos", 29.5, 1.0, "Abeja Venenosa", "Enjambre", 100, 60, 20, "img/beedrill.png", "bicho" );
@@ -32,7 +32,7 @@ var Primeape = new Pokemon("Primeape", "Solo se calma cuando nadie está cerca. 
 var Squirtle = new Pokemon("Squirtle", "Se protege con su caparazón y luego contraataca lanzando agua a presión cuando tiene oportunidad.", "Ambos", 9.0, 0.5, "Tortuguita", "Torrente", 100, 30,30, "img/squirtle.png", "agua");
 var Pablo = new Pokemon("Pablo", "Le gusta la leche y los yogures, ojo con él, es un diablillo.", "Macho", 11.0, 0.83, "Humanito", "Estufita", 100, 60,40, "img/pablo.png", "fuego");
 
-
+//Variables y arrays
 var listaPokemonB = [Arbok, Arcanine, Beedrill, Bulbasaur, Charizard, Dugtrio, Gloom, Golbat, Kadabra, Nidoking, Ninetales, Onix, Pidgeotto, Pikachu, Primeape, Squirtle, Pablo];
 var listaPokemon = ["Arbok", "Arcanine", "Beedrill", "Bulbasaur", "Charizard", "Dugtrio", "Gloom", "Golbat", "Kadabra", "Nidoking", "Ninetales", "Onix", "Pidgeotto", "Pikachu", "Primeape", "Squirtle", "Pablo"];
 var pokemonUsuario;
@@ -42,6 +42,19 @@ var cantidadAtaqueMaquina = 0;
 var cantidadAtaqueUsuario = 0;
 var bonus = 10;
 var listaBonus = ["x 0", "x 1", "x 2", "x 3"];
+
+//Funcion que llena el menú con los pokemon
+function llenarLista()
+{	
+	for(var i=0; i<listaPokemon.length;i++)
+	{
+		$("#menu ul").append("<li onclick='cargarPokemon(" + listaPokemon[i] + ")'>" + listaPokemon[i] + "</li>");
+	}
+	//Oculto el div intro de inicio.
+	$("#intro").addClass("ocultar");
+}
+
+//Funcion que carga el Pokemon seleccionado de la lista en la pantalla.
 function cargarPokemon(pokemon)
 {
 	pokemonUsuario = pokemon;
@@ -60,20 +73,14 @@ function cargarPokemon(pokemon)
 	$("#defensa").html('Defensa: <span>' + pokemon.defensa + '</span><br/><progress value="' + pokemon.defensa + '" max="100"></progress>');
 	$("#vida").html('Vida: <span>' + pokemon.vida + '</span><br/><progress value="' + pokemon.vida + '" max="100"></progress>');}
 
-function llenarLista()
-{	
-	for(var i=0; i<listaPokemon.length;i++)
-	{
-		$("#menu ul").append("<li onclick='cargarPokemon(" + listaPokemon[i] + ")'>" + listaPokemon[i] + "</li>");
-	}
-	$("#intro").addClass("ocultar");
-}
 
+//Funcion que genera un número aleatorio indicando un minimo y un maximo.
 function aleatorio(minimo, maximo) {
 	var numero = Math.floor( Math.random() * (maximo - minimo + 1) + minimo);
 	return numero;
 }
 
+//Funcion que quita el menú y añade el pokemon elegido a un lado y la bola de eleccion de la maquina al otro lado.
 function prepararCampo()
 {
 	$("#menu").addClass("ocultar");
@@ -86,13 +93,14 @@ function prepararCampo()
 	$("#contenedorMaquina").removeClass("ocultar");
 	$("#contenedorUsuario").removeClass("contenedorUsuario").addClass("contenedorUsuarioB");
 }
+
+//Funcion que hace que la maquina seleccione un pokemon aleatorio cada vez.
 function elegirContrincante()
 {
 	$("#imgBola").addClass("ocultar");
 	$("#botonPelear").addClass("botonStart").removeClass("ocultar");
 	var numero = aleatorio(0,16);
 	pokemonPC = listaPokemonB[numero];
-	//var pokemonPC = Pikachu;
 	$("#contenedorBichosPC").removeClass("ocultar");
 	$("#imagenPC").html('<img src="' + pokemonPC.imagen + '"/>');
 	$("#nombrePC").html(pokemonPC.nombre);
@@ -100,19 +108,34 @@ function elegirContrincante()
 	$("#ataquePC").html('Ataque: <span>' + pokemonPC.ataque + '</span><br/><progress value="' + pokemonPC.ataque + '" max="100"></progress>');
 	$("#defensaPC").html('Defensa: <span>' + pokemonPC.defensa + '</span><br/><progress value="' + pokemonPC.defensa + '" max="100"></progress>');
 	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
-
 }
 
+//Funcion de inicio de batalla, inicia siempre el pokemon del usuario para darle un golpe de ventaja.
+function luchar()
+{
+	$("#botonPelear").removeClass("botonStart").addClass("ocultar");
+	$("#resultado").removeClass("ocultar");
+	texto = "<p>Comienza atacando " + pokemonUsuario.nombre + "</p>";
+	alerta(texto, "success");
+	window.setTimeout(ataqueUsuario, 5000);
+}
+
+//Funcion que analiza el golpe a dar por el pokemon del usuario segun su fuerza de ataque y la defensa del otro pokemon.
 function ataqueUsuario()
 {
 	$("#imagen").addClass("animado");
+	//CantidadAtaqueUsuario arranca con 0, en los primeros 5 ataques cabe la posibilidad segun el numero aletarorio de coger un Bonus de ataque.
+	//A partir del 5 ataque para que el juego no se demore simpre saldrá un bonus por ataque.
+	//El bonus puedes ser muliplicar por (0 - 1 - 2 - 3). Por lo que aveces el resultado es 0 o se queda igual, o multiplica.
 	if(cantidadAtaqueUsuario > aleatorio(0,5))
 	{
 		numero = aleatorio(0,3);
 		bonus = listaBonus[numero];
 	}
+	//Bonus inicia en 10, si no se ha modificado, significa que no ha habido bonus en la condicion anterior. Si se ha modificado es que hay bonus.
 	if(bonus == 10)
 	{
+		// Sin Bonus
 		fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
 		texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + "</p>";
 		alerta(texto, "warning");
@@ -121,6 +144,7 @@ function ataqueUsuario()
 	}
 	else
 	{
+		// Con Bonus
 		fuerzaAtaqueUsuario = aleatorio((pokemonUsuario.ataque / 2), pokemonUsuario.ataque);
 		fuerzaAtaqueUsuario = fuerzaAtaqueUsuario * numero;
 		texto = "<p>" + pokemonUsuario.nombre + " Ataca con una fuerza de " + fuerzaAtaqueUsuario + " con un BONUS de -> X " + numero + " <- .</p>";
@@ -128,21 +152,23 @@ function ataqueUsuario()
 		fuerzaDefensaMaquina = aleatorio((pokemonPC.defensa / 2), pokemonPC.defensa);
 		golpe = fuerzaAtaqueUsuario - fuerzaDefensaMaquina;
 	}
-	
+	//Si el resultado del golpe es mayor que cero, golpeamos.
 	if (golpe > 0)
 	{
 		texto = "<p>" + pokemonPC.nombre + " se defiende con " + fuerzaDefensaMaquina + ". y pierde " + golpe + " de vida.</p>";
 		alerta(texto, "warning");
 		pokemonPC.vida = pokemonPC.vida - golpe;
 	}
+	//Si no, significa que el pokemon a sacado mas defensa que el ataque recibido.
 	else
 	{
 		texto = "<p>" + pokemonPC.nombre + " se defiende con " + fuerzaDefensaMaquina + ". y rechaza el golpe.</p>";
 		alerta(texto, "success");
 	}
-	
+	//Aqui se analiza si el pokemon que ha recibido el golpe sige con vida o no. 
 	if (pokemonPC.vida < 0 || pokemonPC.vida == 0)
 		{
+			//Si la vida es menor o igual a 0 es que ha perdido. Salimos del bucle.
 			pokemonPC.vida = 0;
 			$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 			texto = "<p>El ganador es: " + pokemonUsuario.nombre + "</p>";
@@ -151,6 +177,7 @@ function ataqueUsuario()
 			alertaB(texto, "success");
 			return true;
 		}
+	//Si aún le queda vida, se la quitamos y pasamos a atacar desde el otro pokemon.
 	$("#vidaPC").html('Vida: <span>' + pokemonPC.vida + '</span><br/><progress value="' + pokemonPC.vida + '" max="100"></progress>');
 	texto = "<p>" + pokemonPC.nombre + " se queda con " + pokemonPC.vida + " de vida.</p>";
 	alerta(texto, "warning");
@@ -161,6 +188,7 @@ function ataqueUsuario()
 		
 }
 
+// Es identica, solo que desde el otro lado de la batalla.
 function ataqueMaquina()
 {
 	$("#imagenPC").addClass("animado");
@@ -216,18 +244,7 @@ function ataqueMaquina()
 	window.setTimeout(ataqueUsuario, 5000);
 }
 
-function luchar()
-{
-	$("#botonPelear").removeClass("botonStart").addClass("ocultar");
-	$("#resultado").removeClass("ocultar");
-	texto = "<p>Comienza atacando " + pokemonUsuario.nombre + "</p>";
-	alerta(texto, "success");
-	window.setTimeout(ataqueUsuario, 5000);
-	
-
-	
-}
-
+//Funcion que genera alerta que desaparece a los 2 segundos con los datos de los ataques.
 function alerta(texto, tipo) 
 	{
 
@@ -245,6 +262,7 @@ function alerta(texto, tipo)
         console.log('html: ' + n.options.id);
     }
 
+//Funcion que genera alerta que se queda hasta el final con un botón de OK que reinicia el juego al inicio.
 function alertaB(texto, tipo) 
 	{
 
